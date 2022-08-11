@@ -7,53 +7,48 @@ function App() {
     const [metersPerBucket, setMetersPerBucket] = useState(3);
 
     function calculate() {
-
         let area = width * height;
-
         let buckets = Math.ceil(area / metersPerBucket);
-
-        alert(`Para essa parede, você precisará de ${buckets} lata${buckets > 1 ? 's' : ''}`);
+        alert(`Essa parede possui ${area}m²\nvocê precisará de ${buckets} lata${buckets > 1 ? 's' : ''} para pinta-la`);
     }
 
     return (
-        <Comp.ContentArea>
-            <Comp.Title>Calculadora de tinta</Comp.Title>
+        <Comp.Container>
+            <Comp.Image src='paint-bucket.svg'/>
+            <Comp.ContentArea>
+                <Comp.Title>Calculadora de tinta</Comp.Title>
 
-            <Comp.FormArea>
-                Altura em m²
-                <Comp.ValueInput
-                    value={height}
-                    onChange={(e) => setHeight(Number(e.target.value))}
-                    type="number"
-                />
-            </Comp.FormArea>
+                <Comp.FormArea>
+                    Altura em metros
+                    <Comp.ValueInput
+                        value={height}
+                        onChange={(e) => setHeight(Number(e.target.value))}
+                        type="number"
+                    />
+                </Comp.FormArea>
 
-            <Comp.FormArea>
-                Largura em m²
-                <Comp.ValueInput
-                    value={width}
-                    onChange={(e) => setWidth(Number(e.target.value))}
-                    type="number"
-                />
-            </Comp.FormArea>
+                <Comp.FormArea>
+                    Largura em metros
+                    <Comp.ValueInput
+                        value={width}
+                        onChange={(e) => setWidth(Number(e.target.value))}
+                        type="number"
+                    />
+                </Comp.FormArea>
 
-            <Comp.FormArea>
-                Rendimento da lata em m²
-                <Comp.ValueInput
-                    value={metersPerBucket}
-                    onChange={(e) => setMetersPerBucket(Number(e.target.value))}
-                    type="number"
-                />
-            </Comp.FormArea>
+                <Comp.FormArea>
+                    Rendimento da lata em m²
+                    <Comp.ValueInput
+                        value={metersPerBucket}
+                        onChange={(e) => setMetersPerBucket(Number(e.target.value))}
+                        type="number"
+                    />
+                </Comp.FormArea>
 
+                <Comp.CalcButton onClick={calculate}>Calcular</Comp.CalcButton>
 
-            <Comp.CalcButton
-                onClick={calculate}
-            >
-                Calcular
-            </Comp.CalcButton>
-
-        </Comp.ContentArea>
+            </Comp.ContentArea>
+        </Comp.Container>
     )
 }
 
