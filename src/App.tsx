@@ -14,12 +14,13 @@ function App() {
 
     return (
         <Comp.Container>
-            <Comp.Image src='paint-bucket.svg'/>
             <Comp.ContentArea>
                 <Comp.Title>Calculadora de tinta</Comp.Title>
 
+                <Comp.Description>Insira as dimensões da parede que deseja pintar, e o rendimento da lata de tinta</Comp.Description>
+
                 <Comp.FormArea>
-                    Altura em metros
+                    Altura da parede em metros
                     <Comp.ValueInput
                         value={height}
                         onChange={(e) => setHeight(Number(e.target.value))}
@@ -28,7 +29,7 @@ function App() {
                 </Comp.FormArea>
 
                 <Comp.FormArea>
-                    Largura em metros
+                    Largura da parede em metros
                     <Comp.ValueInput
                         value={width}
                         onChange={(e) => setWidth(Number(e.target.value))}
@@ -45,7 +46,10 @@ function App() {
                     />
                 </Comp.FormArea>
 
-                <Comp.CalcButton onClick={calculate}>Calcular</Comp.CalcButton>
+                <Comp.CalcButton onClick={calculate}>
+                    <Comp.Image src='paint-bucket.svg' />
+                    Calcular
+                </Comp.CalcButton>
 
             </Comp.ContentArea>
         </Comp.Container>
