@@ -5,7 +5,7 @@ function App() {
     const [height, setHeight] = useState(1);
     const [width, setWidth] = useState(1);
     const [metersPerBucket, setMetersPerBucket] = useState(3);
-    const [result, setResult] = useState(0);
+    const [result, setResult] = useState(NaN);
 
     function calculate() {
         let area = width * height;
@@ -15,19 +15,18 @@ function App() {
 
     return (
         <Comp.Container>
+            <Comp.Title>Calculadora de tinta</Comp.Title>
             <Comp.ContentArea>
-                <Comp.Title>Calculadora de tinta</Comp.Title>
-
                 {
-                    result !== 0
+                    isNaN(result)
                         ? <Comp.Description>
-                            Você precisará de
-                            <Comp.Highlight>{result} LATA{result > 1 ? 'S' : ''}</Comp.Highlight>
-                            para pintar essa parede
+                            Insira as dimensões da parede que deseja pintar, e o rendimento da lata de tinta
                         </Comp.Description>
 
                         : <Comp.Description>
-                            Insira as dimensões da parede que deseja pintar, e o rendimento da lata de tinta
+                            Você precisará de
+                            <Comp.Result>{result} LATA{result > 1 ? 'S' : ''}</Comp.Result>
+                            para pintar essa parede
                         </Comp.Description>
                 }
 
@@ -35,6 +34,7 @@ function App() {
                     Altura da parede em metros
                     <Comp.ValueInput
                         value={height}
+
                         onChange={(e) => setHeight(Number(e.target.value))}
                         type="number"
                     />
