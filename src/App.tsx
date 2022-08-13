@@ -5,11 +5,12 @@ function App() {
     const [height, setHeight] = useState(1);
     const [width, setWidth] = useState(1);
     const [metersPerBucket, setMetersPerBucket] = useState(3);
+    const [result, setResult] = useState(0);
 
     function calculate() {
         let area = width * height;
         let buckets = Math.ceil(area / metersPerBucket);
-        alert(`Essa parede possui ${area}m²\nvocê precisará de ${buckets} lata${buckets > 1 ? 's' : ''} para pinta-la`);
+        setResult(buckets);
     }
 
     return (
@@ -17,7 +18,18 @@ function App() {
             <Comp.ContentArea>
                 <Comp.Title>Calculadora de tinta</Comp.Title>
 
-                <Comp.Description>Insira as dimensões da parede que deseja pintar, e o rendimento da lata de tinta</Comp.Description>
+                {
+                    result !== 0
+                        ? <Comp.Description>
+                            Você precisará de
+                            <Comp.Highlight>{result} LATA{result > 1 ? 'S' : ''}</Comp.Highlight>
+                            para pintar essa parede
+                        </Comp.Description>
+
+                        : <Comp.Description>
+                            Insira as dimensões da parede que deseja pintar, e o rendimento da lata de tinta
+                        </Comp.Description>
+                }
 
                 <Comp.FormArea>
                     Altura da parede em metros
